@@ -9,43 +9,83 @@
 					"label": ""
 				},
 				{
-					"line": 26,
+					"line": 27,
 					"column": 11,
 					"label": ""
 				},
 				{
-					"line": 72,
+					"line": 83,
 					"column": 10,
 					"label": ""
 				},
 				{
-					"line": 129,
+					"line": 140,
 					"column": 13,
 					"label": ""
 				},
 				{
-					"line": 142,
+					"line": 153,
 					"column": 6,
 					"label": ""
 				},
 				{
-					"line": 165,
+					"line": 180,
 					"column": 7,
 					"label": ""
 				},
 				{
-					"line": 207,
+					"line": 222,
 					"column": 10,
 					"label": ""
 				},
 				{
-					"line": 219,
+					"line": 240,
+					"column": 16,
+					"label": ""
+				},
+				{
+					"line": 256,
+					"column": 16,
+					"label": ""
+				},
+				{
+					"line": 299,
+					"column": 7,
+					"label": ""
+				},
+				{
+					"line": 312,
+					"column": 17,
+					"label": ""
+				},
+				{
+					"line": 324,
+					"column": 20,
+					"label": ""
+				},
+				{
+					"line": 329,
+					"column": 13,
+					"label": ""
+				},
+				{
+					"line": 385,
+					"column": 14,
+					"label": ""
+				},
+				{
+					"line": 390,
 					"column": 9,
 					"label": ""
 				},
 				{
-					"line": 278,
-					"column": 7,
+					"line": 434,
+					"column": 12,
+					"label": ""
+				},
+				{
+					"line": 482,
+					"column": 9,
 					"label": ""
 				}
 			]
@@ -59,27 +99,27 @@
 					"label": ""
 				},
 				{
-					"line": 31,
+					"line": 33,
 					"column": 2,
 					"label": ""
 				},
 				{
-					"line": 45,
+					"line": 47,
 					"column": 2,
 					"label": ""
 				},
 				{
-					"line": 85,
+					"line": 86,
 					"column": 2,
 					"label": ""
 				},
 				{
-					"line": 102,
+					"line": 103,
 					"column": 2,
 					"label": ""
 				},
 				{
-					"line": 158,
+					"line": 159,
 					"column": 2,
 					"label": ""
 				}
@@ -94,88 +134,108 @@
 					"label": ""
 				},
 				{
-					"line": 199,
-					"column": 8,
-					"label": ""
-				},
-				{
-					"line": 237,
-					"column": 6,
-					"label": ""
-				},
-				{
-					"line": 238,
-					"column": 8,
+					"line": 201,
+					"column": 5,
 					"label": ""
 				},
 				{
 					"line": 265,
-					"column": 10,
-					"label": ""
-				},
-				{
-					"line": 284,
-					"column": 9,
-					"label": ""
-				},
-				{
-					"line": 298,
-					"column": 8,
-					"label": ""
-				},
-				{
-					"line": 314,
 					"column": 7,
 					"label": ""
 				},
 				{
-					"line": 360,
+					"line": 266,
+					"column": 9,
+					"label": ""
+				},
+				{
+					"line": 292,
+					"column": 14,
+					"label": ""
+				},
+				{
+					"line": 307,
+					"column": 9,
+					"label": ""
+				},
+				{
+					"line": 350,
+					"column": 9,
+					"label": ""
+				},
+				{
+					"line": 371,
+					"column": 7,
+					"label": ""
+				},
+				{
+					"line": 424,
+					"column": 7,
+					"label": ""
+				},
+				{
+					"line": 433,
 					"column": 6,
 					"label": ""
 				},
 				{
-					"line": 370,
-					"column": 7,
+					"line": 482,
+					"column": 14,
 					"label": ""
 				},
 				{
-					"line": 417,
+					"line": 533,
 					"column": 9,
 					"label": ""
 				},
 				{
-					"line": 461,
-					"column": 8,
-					"label": ""
-				},
-				{
-					"line": 479,
-					"column": 8,
-					"label": ""
-				},
-				{
-					"line": 517,
-					"column": 7,
-					"label": ""
-				},
-				{
-					"line": 522,
-					"column": 8,
-					"label": ""
-				},
-				{
-					"line": 551,
+					"line": 555,
 					"column": 9,
 					"label": ""
 				},
 				{
-					"line": 563,
-					"column": 11,
+					"line": 592,
+					"column": 9,
 					"label": ""
 				},
 				{
-					"line": 591,
-					"column": 10,
+					"line": 597,
+					"column": 9,
+					"label": ""
+				},
+				{
+					"line": 642,
+					"column": 13,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "Portfolio-architecte/FrontEnd/scripts/adapt-page_login.js",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 13,
+					"label": ""
+				},
+				{
+					"line": 1,
+					"column": 8,
+					"label": ""
+				},
+				{
+					"line": 6,
+					"column": 8,
+					"label": ""
+				},
+				{
+					"line": 25,
+					"column": 3,
+					"label": ""
+				},
+				{
+					"line": 129,
+					"column": 8,
 					"label": ""
 				}
 			]
