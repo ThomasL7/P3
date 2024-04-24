@@ -1,37 +1,37 @@
-//*** Adaptative Content ****************************************************/
+//*** Adaptative content ****************************************************/
 // Reload page to top
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);
 };
 
-// Hide or Show HTML Sections (functions)
+// Hide or show HTML sections (functions)
 const allSections = document.querySelectorAll("section");
 const introductionSection = document.getElementById("introduction");
 let connected = false;
 
 function hideSections() {
   allSections.forEach((section) => {
-    section.classList.add("hideClass");
+    section.classList.add("hide-class");
   });
-  introductionSection.id = "hideIntroduction";
+  introductionSection.id = "hide-introduction";
 }
 
 function showSections() {
   allSections.forEach((section) => {
-    section.classList.remove("hideClass");
+    section.classList.remove("hide-class");
   });
   introductionSection.id = "introduction";
 }
 
-// Show Login Section + Logout Process
+// Show login section + logout process
 const navLogin = document.getElementById("nav-login");
 const loginSection = document.querySelector(".login-section");
 
 navLogin.addEventListener("click", () => {
   if (connected === false) {
     hideSections();
-    loginSection.classList.remove("hideClass");
-    navLogin.classList.add("navActiveLi");
+    loginSection.classList.remove("hide-class");
+    navLogin.classList.add("nav-active");
   } else {
     sessionStorage.removeItem("accessToken");
     connected = false;
@@ -39,13 +39,19 @@ navLogin.addEventListener("click", () => {
   }
 });
 
-// Adaptative Home Page Process
-const divModifyWorks = document.querySelector(".div-modify-works");
-const filters = document.querySelector(".filters");
+// Adaptative home page process
+const headerTitle = document.getElementById("header-title");
 const navProjects = document.getElementById("nav-projects");
 const navContact = document.getElementById("nav-contact");
+const divModifyWorks = document.querySelector(".div-modify-works");
+const filters = document.querySelector(".filters");
 
-//___Navigation Projects & Contact to Home
+//___Header title, navigation projects & contact to home
+headerTitle.addEventListener("click", () => {
+  adaptativeHomepage();
+  window.scrollTo(0, 0);
+});
+
 navProjects.addEventListener("click", () => {
   adaptativeHomepage();
 });
@@ -54,42 +60,46 @@ navContact.addEventListener("click", () => {
   adaptativeHomepage();
 });
 
-//___Adapt Homepage if Connected or Not
+//___Adapt homepage if connected or not
 function adaptativeHomepage() {
-  navLogin.classList.remove("navActiveLi");
+  navLogin.classList.remove("nav-active");
 
-  if (connected === true) {
+  if (connected) {
     navLogin.textContent = "logout";
     navLogin.setAttribute("aria-label", "Button pour se déconnecter");
-    divModifyWorks.classList.remove("hideClass");
-    filters.classList.add("hideClass");
+    divModifyWorks.classList.remove("hide-class");
+    filters.classList.add("hide-class");
     showSections();
-    loginSection.classList.add("hideClass");
+    loginSection.classList.add("hide-class");
   } else {
     navLogin.textContent = "login";
     navLogin.setAttribute("aria-label", "Lien pour se connecter");
-    divModifyWorks.classList.add("hideClass");
-    filters.classList.remove("hideClass");
+    divModifyWorks.classList.add("hide-class");
+    filters.classList.remove("hide-class");
     showSections();
-    loginSection.classList.add("hideClass");
+    loginSection.classList.add("hide-class");
+  }
+
+  if (!incorrectLogin.classList.contains("hide-class")) {
+    incorrectLogin.classList.add("hide-class");
   }
 }
 
-// *** Request: Login **************************************
+// *** Request: login **************************************
 const submitLogin = document.getElementById("submit-login");
 const incorrectLogin = document.querySelector(".incorrect-login");
 
-// Submit Button Event
+// Submit button event
 submitLogin.addEventListener("click", (event) => {
   event.preventDefault();
 
-  //___Getting Login Input
+  //___Getting login input
   const fullLogin = {
     email: document.getElementById("email-login").value,
     password: document.getElementById("password-login").value,
   };
 
-  //___Fetch Login for Token
+  //___Fetch login for token
   fetch("http://localhost:5678/api/users/login", {
     method: "POST",
     headers: {
@@ -99,10 +109,10 @@ submitLogin.addEventListener("click", (event) => {
   })
     .then((response) => {
       if (!response.ok) {
-        incorrectLogin.classList.remove("hideClass");
+        incorrectLogin.classList.remove("hide-class");
         throw new Error(response);
       }
-      incorrectLogin.classList.add("hideClass");
+      incorrectLogin.classList.add("hide-class");
       return response.json();
     })
 
@@ -113,11 +123,11 @@ submitLogin.addEventListener("click", (event) => {
     })
 
     .catch((error) => {
-      console.error("Request Login :", error);
+      console.error("Request login :", error);
     });
 });
 
-// *** Check if Logged on Reload *************************************************/
+// *** Check if logged on reload *************************************************/
 window.addEventListener("load", function () {
   if (sessionStorage.getItem("accessToken")) {
     connected = true;

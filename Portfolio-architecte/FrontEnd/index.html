@@ -17,12 +17,14 @@
 
 <body>
 	<header>
-		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+		<div id="header-title">
+			<h1>Sophie Bluel <span>ARCHITECTE D'INTÉRIEUR</span></h1>
+		</div>
 		<nav>
 			<ul>
 				<li id="nav-projects"><a href="#projects">projets</a></li>
 				<li id="nav-contact"><a href="#contact">contact</a></li>
-				<li id="nav-login"><a href="" aria-label="Lien pour se connecter">login</a></li>
+				<li id="nav-login"><a href="#" aria-label="Lien pour se connecter">login</a></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram" aria-label="Lien vers Instagram"></li>
 			</ul>
 		</nav>
@@ -30,52 +32,51 @@
 	<main>
 
 		<!-- Login -->
-		<section class="login-section hideClass">
+		<section class="login-section hide-class">
 			<h2>Log In</h2>
 			<form>
-				<label for="email-login">E-mail</label>
+				<label for="email-login" class="label">E-mail</label>
 				<input type="email" id="email-login" class="input" name="email-login" autocomplete="email" required>
-				<label for="password-login">Mot de passe</label>
+				<label for="password-login" class="label">Mot de passe</label>
 				<input type="password" id="password-login" class="input" name="password-login" required>
-				<p class="incorrect-login hideClass">Erreur dans l’identifiant ou le mot de passe</p>
+				<p class="incorrect-login hide-class">Erreur dans l’identifiant ou le mot de passe</p>
 				<button type="button" id="submit-login" class="button">Se connecter</button>
 				<a href="#" id="forgot-password">Mot de passe oublié</a>
 			</form>
 		</section>
 
 		<!-- Modal -->
-		<aside class="modal hideClass">
+		<aside class="modal hide-class">
 			<div class="modal-all-content">
 				<div class="modal-window-icons">
-					<img class="modal-previous-icon hideClass" src="./assets/icons/previous.png" alt="Icône précédent" aria-label="Bouton précédent">
+					<img class="modal-previous-icon hide-class" src="./assets/icons/previous.png" alt="Icône précédent" aria-label="Bouton précédent">
 					<img class="modal-close-icon" src="./assets/icons/close.png" alt="Icône fermer" aria-label="Bouton fermer">
 				</div>
 				<div class="modal-main-content">
 					<p class="modal-header-title">Galerie photo</p>
 					<div class="modal-gallery">
 					</div>
-					<div class="modal-section-add-work hideClass">
-						<form>
+					<div class="modal-section-add-work hide-class">
+						<form class="form-add-work">
 							<div class="modal-section-add-photo">
-								<img class="modal-image-loaded hideClass" src="./assets/icons/modify.png" alt="Image chargée">
+								<img class="modal-image-loaded hide-class" src="./" alt="">
 								<div class="modal-section-add-photo-to-hide">
 									<img class="modal-default-img" src="./assets/icons/default-picture.png" alt="Icône d'une photo" aria-hidden="true">
 									<button type="button" class="button-add-photo button">+ Ajouter photo</button>
-									<input type="file" id="new-work-image" accept=".png, .jpeg">
+									<input type="file" id="new-work-image" accept=".png, .jpg">
 									<p>jpg, png : 4mo max</p>
 								</div>
 							</div>
 							<div class="modal-section-add-title-category">
-								<label for="new-work-title">Titre</label>
+								<label for="new-work-title" class="label">Titre</label>
 								<input type="text" id="new-work-title" class="input" name="new-work-title">
-								<label for="new-work-cat">Catégorie</label>
-								<select id="new-work-cat" class="input" name="new-work-cat">
-									<option label=" " aria-hidden="true"></option>
-									<option value="Objets">Objets</option>
+								<label for="new-work-cat" class="label">Catégorie</label>
+								<select id="new-work-cat" class="new-work-cat input" name="new-work-cat">
 								</select>
 							</div>
 						</form>
 					</div>
+					<p class="incorrect-form-add-work hide-class">Un ou plusieurs champs sont invalides</p>
 					<hr class="modal-separator">
 					<button type="button" class="modal-main-button button">Ajouter une photo</button>
 				</div>
@@ -92,7 +93,7 @@
 				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
 					finale du chantier.</p>
 				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
-					couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du
+					couleurs dans le respect de l’esprit des lieux, et le choix adapté des matériaux. Le suivi du
 					chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
 				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
 					décorateur(trice)</p>
@@ -101,8 +102,8 @@
 
 		<section id="portfolio">
 			<div class="section-projects-title">
-				<h2 id="projects">Mes Projets</h2>
-				<div class="div-modify-works hideClass">
+				<h2 id="projects">Mes projets</h2>
+				<div class="div-modify-works hide-class">
 					<img src="./assets/icons/modify.png" alt="Icône modifier" aria-hidden="true">
 					<a id="link-modify-works" href="#">modifier</a>
 				</div>
@@ -159,11 +160,11 @@
 			<h2>Contact</h2>
 			<p>Vous avez un projet ? Discutons-en !</p>
 			<form action="#" method="post">
-				<label for="name">Nom</label>
+				<label for="name" class="label">Nom</label>
 				<input type="text" class="input" name="name" id="name" autocomplete="family-name">
-				<label for="email">Email</label>
+				<label for="email" class="label">E-mail</label>
 				<input type="email" class="input" name="email" id="email" autocomplete="email">
-				<label for="message">Message</label>
+				<label for="message" class="label">Message</label>
 				<textarea name="message" id="message" cols="30" rows="10"></textarea>
 				<input type="submit" class="button" value="Envoyer">
 			</form>
@@ -173,7 +174,7 @@
 	<footer>
 		<nav>
 			<ul>
-				<li>Mentions Légales</li>
+				<li>Mentions légales</li>
 			</ul>
 		</nav>
 	</footer>

@@ -1,4 +1,4 @@
-//*** Request: filters + works ***************************************
+//*** Request: Filters + Works ***************************************
 const fetchFilters = fetch("http://localhost:5678/api/categories");
 const fetchWorks = fetch("http://localhost:5678/api/works");
 
@@ -25,7 +25,7 @@ Promise.all([fetchFilters, fetchWorks])
     console.error("Request filters & works :", error);
   });
 
-//*** Builds & add HTML ******************************************
+//*** Builds & Add HTML ******************************************
 // Add HTML
 function addToHTML(contentHTML, classForInsertion) {
   const elementTarget = document.querySelector(`.${classForInsertion}`);
@@ -33,7 +33,7 @@ function addToHTML(contentHTML, classForInsertion) {
   elementTarget.insertAdjacentHTML("afterbegin", contentHTML);
 }
 
-// Filters build
+// Filters Build
 function gettingJSONFiltersToHTML(JSONName) {
   let allFiltersHTML = '<button type="button" class="filters-button filterCat-0 button active-button-filter">Tous</button>';
   for (const object of JSONName) {
@@ -43,7 +43,7 @@ function gettingJSONFiltersToHTML(JSONName) {
   return allFiltersHTML;
 }
 
-// Gallery build
+// Gallery Build
 function gettingJSONWorksToHTML(JSONName) {
   let allWorksHTML = "";
   for (const object of JSONName) {
@@ -56,7 +56,7 @@ function gettingJSONWorksToHTML(JSONName) {
   return allWorksHTML;
 }
 
-// Modal gallery build
+// Modal Gallery Build
 function gettingJSONModalWorksToHTML(JSONName) {
   let allModalWorksHTML = "";
   for (const object of JSONName) {
@@ -71,7 +71,7 @@ function gettingJSONModalWorksToHTML(JSONName) {
   return allModalWorksHTML;
 }
 
-// Build HTML of categories selection from add new work form
+// Build HTML of Categories Selection from add new work form
 function gettingJSONModalFiltersToHTML(JSONName) {
   let allModalFiltersHTML = '<option label=" " aria-hidden="true"></option>';
   for (const object of JSONName) {
@@ -85,7 +85,7 @@ function gettingJSONModalFiltersToHTML(JSONName) {
 function filtersProcessOn() {
   const filtersButtons = document.querySelectorAll(".filters-button");
 
-  // Build - list of all works from each category
+  // Build - List of all Works from each Category
   const arrayOfEachWorksCat = [];
 
   for (let i = 0; i < filtersButtons.length; i++) {
@@ -97,7 +97,7 @@ function filtersProcessOn() {
     }
   }
 
-  // Filter process
+  // Filter Process
   let activeNumberCat = 0;
 
   filtersButtons.forEach((button) => {
@@ -108,21 +108,21 @@ function filtersProcessOn() {
       });
       button.classList.add("active-button-filter");
 
-      // Get category number of activated filter
+      // Get Category Number of Activated Filter
       button.classList.forEach((eachClass) => {
         if (eachClass.startsWith("filterCat-")) {
           activeNumberCat = parseInt(eachClass.split("filterCat-")[1]);
         }
       });
 
-      // Hide all works
+      // Hide All Works
       arrayOfEachWorksCat.forEach((worksOfACat) => {
         worksOfACat.forEach((work) => {
           work.classList.add("hide-class");
         });
       });
 
-      // Display works of selected cat.
+      // Display Works of Selected Cat.
       if (activeNumberCat === 0) {
         arrayOfEachWorksCat.forEach((worksOfACat) => {
           worksOfACat.forEach((work) => {
@@ -138,7 +138,7 @@ function filtersProcessOn() {
   });
 }
 
-//*** Modify works modal **************************************
+//*** Modify Works Modal **************************************
 const linkModifyWorks = document.getElementById("link-modify-works");
 const modal = document.querySelector(".modal");
 const modalContent = document.querySelector(".modal-all-content");
@@ -151,7 +151,7 @@ const modalMainButton = document.querySelector(".modal-main-button");
 let displayAddWork = false;
 let mainButtonIsClicked = false;
 
-// Open & close modal
+// Open & Close Modal
 function showModal() {
   modal.classList.remove("hide-class");
   resetAddWorkForm();
@@ -172,13 +172,12 @@ function docListener(event) {
     hideModal();
     displayAddWork = false;
     mainButtonIsClicked = false;
-    modalMainButtonNormalStyle();
     resetAddWorkForm();
     document.removeEventListener("mousedown", docListener);
   }
 }
 
-// Update content modal
+// Update Content Modal
 function modalUpdateContent() {
   changeModalPreviousIcon();
   changeModalHeaderTitle();
@@ -220,12 +219,11 @@ function changeModalPreviousIcon() {
   }
 }
 
-// Close icons & previous icons
+// Close Icons & Previous Icons
 modalCloseIcon.addEventListener("click", () => {
   hideModal();
   displayAddWork = false;
   mainButtonIsClicked = false;
-  modalMainButtonNormalStyle();
   resetAddWorkForm();
   document.removeEventListener("click", docListener);
 });
@@ -234,16 +232,15 @@ modalPreviousIcon.addEventListener("click", () => {
   displayAddWork = false;
   mainButtonIsClicked = false;
   resetAddWorkForm();
-  modalMainButtonNormalStyle();
   modalUpdateContent();
 });
 
-//*** Modal delete work ****************************************************/
+//*** Modal Delete Work ****************************************************/
 function modalTrashesOn() {
   const trashes = document.querySelectorAll(".modal-trash-block");
   let idWorkForTrash;
 
-  // Add event listeners
+  // Add Event Listeners
   trashes.forEach((trash) => {
     trash.addEventListener("click", (event) => {
       deletingWork(event);
@@ -254,7 +251,7 @@ function modalTrashesOn() {
     });
   });
 
-  // Delete process
+  // Delete Process
   function deletingWork(event) {
     //___Get ID for trash
     let elementForTrash = null;
@@ -297,7 +294,7 @@ function modalTrashesOn() {
   }
 }
 
-//*** Modal add new work ****************************************************/
+//*** Modal Add New Work ****************************************************/
 const modalSectionAddPhotoToHide = document.querySelector(".modal-section-add-photo-to-hide");
 const newImageLoaded = document.querySelector(".modal-image-loaded");
 const buttonAddPhoto = document.querySelector(".button-add-photo");
@@ -305,103 +302,63 @@ const inputNewWorkImage = document.getElementById("new-work-image");
 const inputNewWorkTitle = document.getElementById("new-work-title");
 const inputNewWorkCat = document.getElementById("new-work-cat");
 const incorrectFormAddWork = document.querySelector(".incorrect-form-add-work");
+
 let correctImg = false;
 let correctTitle = false;
 let correctCat = false;
-let newWorkImage;
 
-// Display section add work
+function test() {
+  inputNewWorkImage.addEventListener("change", (event) => {
+    const imageLoaded = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      newImageLoaded.src = event.target.result;
+      newImageLoaded.alt = imageLoaded.name.replace(/\.(png|jpeg)+$/, "");
+    };
+    reader.readAsDataURL(imageLoaded);
+  });
+}
+
+// Link Button ".button-add-photo" to Input "#new-work-image" (avoiding a W3C error)
+buttonAddPhoto.addEventListener("click", () => {
+  test();
+  inputNewWorkImage.click();
+});
+
+// Display Section Add Work
 modalMainButton.addEventListener("click", () => {
   if (!mainButtonIsClicked) {
     displayAddWork = true;
     mainButtonIsClicked = true;
     modalUpdateContent();
-    modalMainButton.classList.add("button-style-2");
   } else {
     sendingNewWork();
   }
 });
 
-// Link button ".button-add-photo" to input "#new-work-image" (avoiding a W3C error)
-buttonAddPhoto.addEventListener("click", () => {
-  inputNewWorkImage.click();
-});
-
-// Functions: display loaded image or section form image
-function displayLoadedImage() {
-  modalSectionAddPhotoToHide.classList.add("hide-class");
-  newImageLoaded.classList.remove("hide-class");
-}
-
-function displayDefaultFormImage() {
-  newImageLoaded.classList.add("hide-class");
-  modalSectionAddPhotoToHide.classList.remove("hide-class");
-}
-
-// Loaded image process
-inputNewWorkImage.addEventListener("change", () => {
-  newWorkImage = inputNewWorkImage.files[0];
-
-  //___Check if image format is correct
-  if ((newWorkImage.type !== "image/png" && newWorkImage.type !== "image/jpeg") || newWorkImage.size > 4000000) {
-    buttonAddPhoto.classList.add("invalid-button");
-    if (correctImg) {
-      correctImg = false;
-      resetHTMLLoadedImage();
-      displayDefaultFormImage();
-    } else {
-      correctImg = false;
-      resetHTMLLoadedImage();
-    }
-    incorrectFormAddWork.classList.remove("hide-class");
-  } else {
-    // Remove incorrect text if needed
-    if ((!correctTitle || !correctCat) && (inputNewWorkTitle.classList.contains("invalid-class") || inputNewWorkCat.classList.contains("invalid-class"))) {
-      incorrectFormAddWork.classList.remove("hide-class");
-    } else {
-      incorrectFormAddWork.classList.add("hide-class");
-    }
-
-    //___If correct read & display image
-    const reader = new FileReader();
-    reader.onload = function (event) {
-      newImageLoaded.src = event.target.result;
-      newImageLoaded.alt = newWorkImage.name.replace(/\.(png|jpg)$/, "");
-      newImageLoaded.ariaLabel = "Cliquez pour changer l'image";
-    };
-    reader.readAsDataURL(newWorkImage);
-
-    correctImg = true;
-    displayLoadedImage();
-  }
-});
-
-// Function: reset HTML loaded image
-function resetHTMLLoadedImage() {
-  newImageLoaded.src = "";
-  newImageLoaded.alt = "";
-  newImageLoaded.removeAttribute("aria-label");
-}
-
-// Clicking loaded image to change image
-newImageLoaded.addEventListener("click", () => {
-  inputNewWorkImage.click();
-});
-
-// Form to add new work + request
+// Form to add New Work + Request
 function sendingNewWork() {
+  const newWorkImage = inputNewWorkImage.files[0];
   const newWorkTitle = inputNewWorkTitle.value;
   const newWorkCat = inputNewWorkCat.value;
   let newWorkTitleWithoutStartSpace;
 
-  //___Verify if image exist
-  if (!newWorkImage || !correctImg) {
+  //___Verify Image
+  if (!newWorkImage) {
     buttonAddPhoto.classList.add("invalid-button");
     correctImg = false;
     displayDefaultFormImage();
+  } else if ((newWorkImage.type !== "image/png" && newWorkImage.type !== "image/jpeg") || newWorkImage.size > 4000000) {
+    buttonAddPhoto.classList.add("invalid-button");
+    correctImg = false;
+    displayDefaultFormImage();
+  } else {
+    buttonAddPhoto.classList.remove("invalid-button");
+    displayLoadedImage();
+    correctImg = true;
   }
 
-  //___Verify title
+  //___Verify Title
   if (!newWorkTitle || !/\S+/.test(newWorkTitle)) {
     inputNewWorkTitle.classList.add("invalid-class");
     correctTitle = false;
@@ -411,7 +368,7 @@ function sendingNewWork() {
     correctTitle = true;
   }
 
-  //___Verify cat
+  //___Verify Cat
   if (!newWorkCat) {
     inputNewWorkCat.classList.add("invalid-class");
     correctCat = false;
@@ -420,19 +377,19 @@ function sendingNewWork() {
     correctCat = true;
   }
 
-  //___Display incorrect input text
+  //___Display Incorrect Input Text
   if (!correctImg || !correctTitle || !correctCat) {
     incorrectFormAddWork.classList.remove("hide-class");
   } else {
     incorrectFormAddWork.classList.add("hide-class");
 
-    //___Building form data to send
+    //___Building Form Data to Send
     const newWork = new FormData();
     newWork.append("image", newWorkImage);
     newWork.append("title", newWorkTitleWithoutStartSpace);
     newWork.append("category", newWorkCat);
 
-    //___Request: send new work + add to HTML
+    //___Request: Send New Work + Add to HTML
     fetch("http://localhost:5678/api/works", {
       method: "POST",
       headers: {
@@ -444,32 +401,8 @@ function sendingNewWork() {
         if (!response.ok) {
           throw new Error(`${response}`);
         }
-        return response.json();
-      })
-
-      .then((dataNewWork) => {
-        // Add HTML new work
-        const newWorkHTML = `<figure class="work-cat-${dataNewWork.categoryId} id-${dataNewWork.id}">
-      <img src="${dataNewWork.imageUrl}" alt="Image - ${dataNewWork.title}">
-      <figcaption>${dataNewWork.title}</figcaption>
-      </figure>`;
-        const elementTarget = document.querySelector(`.gallery`);
-        elementTarget.insertAdjacentHTML("beforeend", newWorkHTML);
-
-        // Add modal HTML new work
-        const newWorkModalHTML = `<article class="modal-individual-work workCat-${dataNewWork.categoryId} id-${dataNewWork.id}">
-      <img class="modal-img-work" src="${dataNewWork.imageUrl}" alt="${dataNewWork.title}"=>
-      <div class="modal-trash-block">
-      <img src="./assets/icons/trash.png" alt="Icône de poubelle" aria-label="Button pour supprimer cette photo">
-      </div>
-      </article>`;
-        const elementModalTarget = document.querySelector(`.modal-gallery`);
-        elementModalTarget.insertAdjacentHTML("beforeend", newWorkModalHTML);
-
-        // Reset modal display & form
         displayAddWork = false;
         mainButtonIsClicked = false;
-        modalMainButtonNormalStyle();
         modalUpdateContent();
         resetAddWorkForm();
       })
@@ -480,21 +413,13 @@ function sendingNewWork() {
   }
 }
 
-// Reset form to add new work
+// Reset Form to add New Work
 const formAddWork = document.querySelector(".form-add-work");
 
 function resetAddWorkForm() {
-  displayDefaultFormImage();
   formAddWork.reset();
-  correctImg = false;
-  resetHTMLLoadedImage();
   buttonAddPhoto.classList.remove("invalid-button");
   inputNewWorkTitle.classList.remove("invalid-class");
   inputNewWorkCat.classList.remove("invalid-class");
   incorrectFormAddWork.classList.add("hide-class");
-}
-
-// Modal main button normal style
-function modalMainButtonNormalStyle() {
-  modalMainButton.classList.remove("button-style-2");
 }
