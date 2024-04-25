@@ -87,43 +87,34 @@ function adaptativeHomepage() {
 }
 
 // *** Request: login **************************************
-const submitLogin = document.getElementById("submit-login");
-const incorrectLogin = document.querySelector(".incorrect-login");
+const loginForm = document.querySelector(".login-form");
 const inputLoginEmail = document.getElementById("email-login");
 const inputLoginPassword = document.getElementById("password-login");
-const loginForm = document.querySelector(".login-form");
+const incorrectLogin = document.querySelector(".incorrect-login");
+const submitLogin = document.getElementById("submit-login");
 
 // Submit button event
 submitLogin.addEventListener("click", (event) => {
-  event.preventDefault();
-
-  const loginEmail = inputLoginEmail.value;
-  const loginPassword = inputLoginPassword.value;
-  let correctEmail = false;
-  let correctPassword = false;
-
   //___Checking login input
-  if (loginEmail || /\S+/.test(loginEmail)) {
-    inputLoginEmail.classList.remove("invalid-class");
-    correctEmail = true;
-  } else {
-    correctEmail = false;
-    inputLoginEmail.classList.add("invalid-class");
-  }
+  if (!loginForm.reportValidity()) {
+    if (!inputLoginEmail.checkValidity()) {
+      inputLoginEmail.classList.add("invalid-class");
+    } else {
+      inputLoginEmail.classList.remove("invalid-class");
+    }
 
-  if (loginPassword) {
-    inputLoginPassword.classList.remove("invalid-class");
-    correctPassword = true;
+    if (!inputLoginPassword.checkValidity()) {
+      inputLoginPassword.classList.add("invalid-class");
+    } else {
+      inputLoginPassword.classList.remove("invalid-class");
+    }
   } else {
-    correctPassword = false;
-    inputLoginPassword.classList.add("invalid-class");
-  }
+    event.preventDefault();
 
-  if (correctEmail && correctPassword) {
     //___Getting login input
     const fullLogin = {
-      email: loginEmail,
-      password: loginPassword,
+      email: inputLoginEmail.value,
+      password: inputLoginPassword.value,
     };
 
     //___Fetch login for token

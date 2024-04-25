@@ -354,11 +354,10 @@ inputNewWorkImage.addEventListener("change", () => {
       resetHTMLLoadedImage();
     }
     incorrectFormAddWork.classList.remove("hide-class");
+    buttonAddPhoto.setCustomValidity("Veuillez sélectionner une photo valide");
   } else {
-    // Remove incorrect text if needed
-    if ((!correctTitle || !correctCat) && (inputNewWorkTitle.classList.contains("invalid-class") || inputNewWorkCat.classList.contains("invalid-class"))) {
-      incorrectFormAddWork.classList.remove("hide-class");
-    } else {
+    // Remove incorrect span if needed
+    if (!inputNewWorkTitle.classList.contains("invalid-class") || !inputNewWorkCat.classList.contains("invalid-class")) {
       incorrectFormAddWork.classList.add("hide-class");
     }
 
@@ -367,7 +366,7 @@ inputNewWorkImage.addEventListener("change", () => {
     reader.onload = function (event) {
       newImageLoaded.src = event.target.result;
       newImageLoaded.alt = newWorkImage.name.replace(/\.(png|jpg)$/, "");
-      newImageLoaded.ariaLabel = "Cliquez pour changer l'image";
+      newImageLoaded.ariaLabel = "Cliquez pour changer de photo";
     };
     reader.readAsDataURL(newWorkImage);
 
@@ -392,36 +391,30 @@ newImageLoaded.addEventListener("click", () => {
 function sendingNewWork() {
   const newWorkTitle = inputNewWorkTitle.value;
   const newWorkCat = inputNewWorkCat.value;
-  let newWorkTitleWithoutStartSpace;
+  let newWorkTitleWithoutUselessSpaces;
 
   //___Verify if image exist
-  if (!newWorkImage || !correctImg) {
+  if (!correctImg) {
     buttonAddPhoto.classList.add("invalid-button");
-    correctImg = false;
-    displayDefaultFormImage();
   }
 
   //___Verify title
-  if (!newWorkTitle || !/\S+/.test(newWorkTitle)) {
+  if (!inputNewWorkTitle.reportValidity()) {
     inputNewWorkTitle.classList.add("invalid-class");
-    correctTitle = false;
   } else {
-    newWorkTitleWithoutStartSpace = newWorkTitle.replace(/^\s+|\s+$/g, "");
+    newWorkTitleWithoutUselessSpaces = newWorkTitle.replace(/^\s+|\s+$/g, "");
     inputNewWorkTitle.classList.remove("invalid-class");
-    correctTitle = true;
   }
 
   //___Verify cat
-  if (!newWorkCat) {
+  if (!inputNewWorkCat.reportValidity()) {
     inputNewWorkCat.classList.add("invalid-class");
-    correctCat = false;
   } else {
     inputNewWorkCat.classList.remove("invalid-class");
-    correctCat = true;
   }
 
   //___Display incorrect input text
-  if (!correctImg || !correctTitle || !correctCat) {
+  if (!correctImg || !inputNewWorkTitle.reportValidity() || !inputNewWorkCat.reportValidity()) {
     incorrectFormAddWork.classList.remove("hide-class");
   } else {
     incorrectFormAddWork.classList.add("hide-class");
@@ -429,7 +422,7 @@ function sendingNewWork() {
     //___Building form data to send
     const newWork = new FormData();
     newWork.append("image", newWorkImage);
-    newWork.append("title", newWorkTitleWithoutStartSpace);
+    newWork.append("title", newWorkTitleWithoutUselessSpaces);
     newWork.append("category", newWorkCat);
 
     //___Request: send new work + add to HTML

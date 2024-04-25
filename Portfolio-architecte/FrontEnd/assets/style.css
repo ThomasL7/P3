@@ -295,7 +295,7 @@ nav img {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
   margin-top: 139px;
 }
 
@@ -309,6 +309,7 @@ nav img {
 .filters {
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 }
 
 .filters-button {
@@ -644,6 +645,9 @@ footer nav ul {
 /* Loaded image */
 .modal-image-loaded {
   height: 100%;
+}
+.modal-image-loaded:hover {
+  cursor: pointer;
 }
 
 /* Form title + category */

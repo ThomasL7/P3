@@ -39,7 +39,7 @@
 				<input type="email" id="email-login" class="input" name="email-login" autocomplete="email" required>
 				<label for="password-login" class="label">Mot de passe</label>
 				<input type="password" id="password-login" class="input" name="password-login" required>
-				<p class="incorrect-login hide-class">Erreur dans l’identifiant ou le mot de passe</p>
+				<span class="incorrect-login hide-class">Erreur dans l’identifiant ou le mot de passe</span>
 				<button type="submit" id="submit-login" class="button">Se connecter</button>
 				<a href="#" id="forgot-password">Mot de passe oublié</a>
 			</form>
@@ -64,20 +64,20 @@
 									<img class="modal-default-img" src="./assets/icons/default-picture.png" alt="Icône d'une photo" aria-hidden="true">
 									<button type="button" class="button-add-photo button">+ Ajouter photo</button>
 									<label for="new-work-image" class="label-to-hide">Ajouter une photo</label>
-									<input type="file" id="new-work-image" accept=".png, .jpg">
+									<input type="file" id="new-work-image" accept=".png, .jpg" required>
 									<p>jpg, png : 4mo max</p>
 								</div>
 							</div>
 							<div class="modal-section-add-title-category">
 								<label for="new-work-title" class="label">Titre</label>
-								<input type="text" id="new-work-title" class="input" name="new-work-title">
+								<input type="text" id="new-work-title" class="input" name="new-work-title" required>
 								<label for="new-work-cat" class="label">Catégorie</label>
-								<select id="new-work-cat" class="new-work-cat input" name="new-work-cat">
+								<select id="new-work-cat" class="new-work-cat input" name="new-work-cat" required>
 								</select>
 							</div>
 						</form>
 					</div>
-					<p class="incorrect-form-add-work hide-class">Un ou plusieurs champs sont invalides</p>
+					<span class="incorrect-form-add-work hide-class">Un ou plusieurs champs sont invalides</span>
 					<hr class="modal-separator">
 					<button type="button" class="modal-main-button button">Ajouter une photo</button>
 				</div>
@@ -162,11 +162,11 @@
 			<p>Vous avez un projet ? Discutons-en !</p>
 			<form action="#" method="post">
 				<label for="name" class="label">Nom</label>
-				<input type="text" class="input" name="name" id="name" autocomplete="family-name">
+				<input type="text" class="input" name="name" id="name" autocomplete="family-name" required>
 				<label for="email" class="label">E-mail</label>
-				<input type="email" class="input" name="email" id="email" autocomplete="email">
+				<input type="email" class="input" name="email" id="email" autocomplete="email" required>
 				<label for="message" class="label">Message</label>
-				<textarea name="message" id="message" cols="30" rows="10"></textarea>
+				<textarea name="message" id="message" cols="30" rows="10" required></textarea>
 				<input type="submit" class="button" value="Envoyer">
 			</form>
 		</section>
