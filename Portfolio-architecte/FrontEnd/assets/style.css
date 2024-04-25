@@ -322,6 +322,9 @@ nav img {
   margin-right: 0.88%;
   border: 1px solid #1d6154;
 }
+.filters-button:hover {
+  background-color: #1d8e79;
+}
 
 .filters-button:last-child {
   margin-right: 0px;
