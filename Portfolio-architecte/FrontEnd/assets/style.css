@@ -627,6 +627,9 @@ footer nav ul {
 .button-add-photo:hover {
   background-color: #a4b8c2;
 }
+.label-to-hide {
+  display: none;
+}
 .modal-section-add-photo input[type="file"] {
   display: none;
 }

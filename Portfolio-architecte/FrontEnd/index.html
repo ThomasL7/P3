@@ -34,13 +34,13 @@
 		<!-- Login -->
 		<section class="login-section hide-class">
 			<h2>Log In</h2>
-			<form>
+			<form class="login-form">
 				<label for="email-login" class="label">E-mail</label>
 				<input type="email" id="email-login" class="input" name="email-login" autocomplete="email" required>
 				<label for="password-login" class="label">Mot de passe</label>
 				<input type="password" id="password-login" class="input" name="password-login" required>
 				<p class="incorrect-login hide-class">Erreur dans l’identifiant ou le mot de passe</p>
-				<button type="button" id="submit-login" class="button">Se connecter</button>
+				<button type="submit" id="submit-login" class="button">Se connecter</button>
 				<a href="#" id="forgot-password">Mot de passe oublié</a>
 			</form>
 		</section>
@@ -63,6 +63,7 @@
 								<div class="modal-section-add-photo-to-hide">
 									<img class="modal-default-img" src="./assets/icons/default-picture.png" alt="Icône d'une photo" aria-hidden="true">
 									<button type="button" class="button-add-photo button">+ Ajouter photo</button>
+									<label for="new-work-image" class="label-to-hide">Ajouter une photo</label>
 									<input type="file" id="new-work-image" accept=".png, .jpg">
 									<p>jpg, png : 4mo max</p>
 								</div>

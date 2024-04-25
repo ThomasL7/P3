@@ -80,51 +80,81 @@ function adaptativeHomepage() {
     loginSection.classList.add("hide-class");
   }
 
-  if (!incorrectLogin.classList.contains("hide-class")) {
-    incorrectLogin.classList.add("hide-class");
-  }
+  incorrectLogin.classList.add("hide-class");
+  inputLoginEmail.classList.remove("invalid-class");
+  inputLoginPassword.classList.remove("invalid-class");
+  loginForm.reset();
 }
 
 // *** Request: login **************************************
 const submitLogin = document.getElementById("submit-login");
 const incorrectLogin = document.querySelector(".incorrect-login");
+const inputLoginEmail = document.getElementById("email-login");
+const inputLoginPassword = document.getElementById("password-login");
+const loginForm = document.querySelector(".login-form");
 
 // Submit button event
 submitLogin.addEventListener("click", (event) => {
   event.preventDefault();
 
-  //___Getting login input
-  const fullLogin = {
-    email: document.getElementById("email-login").value,
-    password: document.getElementById("password-login").value,
-  };
+  const loginEmail = inputLoginEmail.value;
+  const loginPassword = inputLoginPassword.value;
+  let correctEmail = false;
+  let correctPassword = false;
 
-  //___Fetch login for token
-  fetch("http://localhost:5678/api/users/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(fullLogin),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        incorrectLogin.classList.remove("hide-class");
-        throw new Error(response);
-      }
-      incorrectLogin.classList.add("hide-class");
-      return response.json();
+  //___Checking login input
+  if (loginEmail || /\S+/.test(loginEmail)) {
+    inputLoginEmail.classList.remove("invalid-class");
+    correctEmail = true;
+  } else {
+    correctEmail = false;
+    inputLoginEmail.classList.add("invalid-class");
+  }
+
+  if (loginPassword) {
+    inputLoginPassword.classList.remove("invalid-class");
+    correctPassword = true;
+  } else {
+    correctPassword = false;
+    inputLoginPassword.classList.add("invalid-class");
+  }
+
+  if (correctEmail && correctPassword) {
+    //___Getting login input
+    const fullLogin = {
+      email: loginEmail,
+      password: loginPassword,
+    };
+
+    //___Fetch login for token
+    fetch("http://localhost:5678/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(fullLogin),
     })
+      .then((response) => {
+        if (!response.ok) {
+          incorrectLogin.classList.remove("hide-class");
+          inputLoginEmail.classList.add("invalid-class");
+          inputLoginPassword.classList.add("invalid-class");
+          throw new Error(response);
+        }
+        incorrectLogin.classList.add("hide-class");
+        return response.json();
+      })
 
-    .then((data) => {
-      sessionStorage.setItem("accessToken", data.token);
-      connected = true;
-      adaptativeHomepage();
-    })
+      .then((data) => {
+        sessionStorage.setItem("accessToken", data.token);
+        connected = true;
+        adaptativeHomepage();
+      })
 
-    .catch((error) => {
-      console.error("Request login :", error);
-    });
+      .catch((error) => {
+        console.error("Request login :", error);
+      });
+  }
 });
 
 // *** Check if logged on reload *************************************************/
