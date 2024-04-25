@@ -35,9 +35,9 @@ function addToHTML(contentHTML, classForInsertion) {
 
 // Filters build
 function gettingJSONFiltersToHTML(JSONName) {
-  let allFiltersHTML = '<button type="button" class="filters-button filterCat-0 button active-button-filter">Tous</button>';
+  let allFiltersHTML = '<button type="button" class="filters-button filter-cat-0 button active-button-filter">Tous</button>';
   for (const object of JSONName) {
-    const filterHTML = `<button type="button" class="filters-button filterCat-${object.id} button">${object.name}</button>`;
+    const filterHTML = `<button type="button" class="filters-button filter-cat-${object.id} button">${object.name}</button>`;
     allFiltersHTML += filterHTML;
   }
   return allFiltersHTML;
@@ -60,7 +60,7 @@ function gettingJSONWorksToHTML(JSONName) {
 function gettingJSONModalWorksToHTML(JSONName) {
   let allModalWorksHTML = "";
   for (const object of JSONName) {
-    const workHTML = `<article class="modal-individual-work workCat-${object.categoryId} id-${object.id}">
+    const workHTML = `<article class="modal-individual-work work-cat-${object.categoryId} id-${object.id}">
     <img class="modal-img-work" src="${object.imageUrl}" alt="${object.title}"=>
     <div class="modal-trash-block">
     <img src="./assets/icons/trash.png" alt="Icône de poubelle" aria-label="Button pour supprimer cette photo">
@@ -110,8 +110,8 @@ function filtersProcessOn() {
 
       // Get category number of activated filter
       button.classList.forEach((eachClass) => {
-        if (eachClass.startsWith("filterCat-")) {
-          activeNumberCat = parseInt(eachClass.split("filterCat-")[1]);
+        if (eachClass.startsWith("filter-cat-")) {
+          activeNumberCat = parseInt(eachClass.split("filter-cat-")[1]);
         }
       });
 
@@ -137,6 +137,13 @@ function filtersProcessOn() {
     });
   });
 }
+
+// Display all works when nav login is clicked
+const navLogin2 = document.getElementById("nav-login");
+navLogin2.addEventListener("click", () => {
+  const filterAll = document.querySelector(".filter-cat-0");
+  filterAll.click();
+});
 
 //*** Modify works modal **************************************
 const linkModifyWorks = document.getElementById("link-modify-works");
@@ -450,7 +457,7 @@ function sendingNewWork() {
         elementTarget.insertAdjacentHTML("beforeend", newWorkHTML);
 
         // Add modal HTML new work
-        const newWorkModalHTML = `<article class="modal-individual-work workCat-${dataNewWork.categoryId} id-${dataNewWork.id}">
+        const newWorkModalHTML = `<article class="modal-individual-work work-cat-${dataNewWork.categoryId} id-${dataNewWork.id}">
       <img class="modal-img-work" src="${dataNewWork.imageUrl}" alt="${dataNewWork.title}"=>
       <div class="modal-trash-block">
       <img src="./assets/icons/trash.png" alt="Icône de poubelle" aria-label="Button pour supprimer cette photo">
