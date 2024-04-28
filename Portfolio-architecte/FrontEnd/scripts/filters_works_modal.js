@@ -372,7 +372,7 @@ inputNewWorkImage.addEventListener("change", () => {
     const reader = new FileReader();
     reader.onload = function (event) {
       newImageLoaded.src = event.target.result;
-      newImageLoaded.alt = newWorkImage.name.replace(/\.(png|jpg)$/, "");
+      newImageLoaded.alt = newWorkImage.name.replace(/\.(png|jpg|jpeg|jpe)$/, "");
       newImageLoaded.ariaLabel = "Cliquez pour changer de photo";
     };
     reader.readAsDataURL(newWorkImage);
