@@ -130,7 +130,6 @@ table {
 
 /*** General *************************************************/
 html {
-  height: 100%;
   background-color: #fffef8;
 }
 
@@ -143,7 +142,7 @@ body {
   display: flex;
   flex-direction: column;
   max-width: 1140px;
-  height: 100%;
+  min-height: 100vh;
   margin: auto;
 }
 
@@ -200,6 +199,26 @@ a {
 }
 
 /*** Header *************************************************/
+.span-editing-mod {
+  text-align: center;
+  font-size: 16px;
+  line-height: 18.77px;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 59px;
+  background-color: black;
+  margin-bottom: -12px;
+  z-index: 1;
+}
+.span-editing-mod img {
+  width: 15.58px;
+  height: 15.58px;
+  margin-right: 11.42px;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -301,6 +320,7 @@ nav img {
 
 .section-projects-title img {
   width: 15.58px;
+  height: 15.58px;
   margin-left: 31px;
   margin-right: 10.42px;
 }

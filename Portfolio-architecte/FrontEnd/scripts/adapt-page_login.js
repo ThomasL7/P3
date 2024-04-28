@@ -61,6 +61,8 @@ navContact.addEventListener("click", () => {
 });
 
 //___Adapt homepage if connected or not
+const spanEditingMod = document.querySelector(".span-editing-mod");
+
 function adaptativeHomepage() {
   navLogin.classList.remove("nav-active");
 
@@ -70,6 +72,7 @@ function adaptativeHomepage() {
     divModifyWorks.classList.remove("hide-class");
     filters.classList.add("hide-class");
     showSections();
+    spanEditingMod.classList.remove("hide-class");
     loginSection.classList.add("hide-class");
   } else {
     navLogin.textContent = "login";
@@ -77,6 +80,7 @@ function adaptativeHomepage() {
     divModifyWorks.classList.add("hide-class");
     filters.classList.remove("hide-class");
     showSections();
+    spanEditingMod.classList.add("hide-class");
     loginSection.classList.add("hide-class");
   }
 
