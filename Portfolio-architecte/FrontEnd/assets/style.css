@@ -390,14 +390,21 @@ nav img {
   margin-top: 50px;
 }
 
+.gallery figure {
+  display: flex;
+  flex-direction: column;
+}
+
 .gallery img {
+  object-fit: cover;
   width: 100%;
+  height: 100%;
 }
 .gallery figcaption {
   font-size: 13px;
   line-height: 15.25px;
 
-  margin-top: 5px;
+  margin-top: 7px;
 }
 
 /* Contact */
@@ -604,7 +611,9 @@ footer nav ul {
   position: relative;
 }
 .modal-img-work {
+  object-fit: cover;
   width: 100%;
+  height: 100%;
 }
 
 .modal-trash-block {

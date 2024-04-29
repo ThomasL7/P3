@@ -350,7 +350,7 @@ inputNewWorkImage.addEventListener("change", () => {
   newWorkImage = inputNewWorkImage.files[0];
 
   //___Check if image format is correct
-  if ((newWorkImage.type !== "image/png" && newWorkImage.type !== "image/jpeg") || newWorkImage.size > 4000000) {
+  if (newWorkImage.size > 4000000) {
     buttonAddPhoto.classList.add("invalid-button");
     if (correctImg) {
       correctImg = false;
