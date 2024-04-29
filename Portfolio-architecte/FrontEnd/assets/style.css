@@ -396,8 +396,10 @@ nav img {
 }
 
 .gallery img {
-  object-fit: cover;
+  /* width: 100%;
+  height: 407px; */
   width: 100%;
+  min-height: 407px;
   height: 100%;
 }
 .gallery figcaption {
@@ -611,8 +613,8 @@ footer nav ul {
   position: relative;
 }
 .modal-img-work {
-  object-fit: cover;
   width: 100%;
+  min-height: 102.57px;
   height: 100%;
 }
 
@@ -731,6 +733,10 @@ footer nav ul {
 .hide-class {
   display: none;
 }
+.gallery .hide-class {
+  display: none;
+}
+
 #hide-introduction {
   display: none;
 }
