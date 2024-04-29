@@ -454,12 +454,19 @@ nav img {
 }
 
 /* Footer ***************************************************/
+footer {
+  max-width: 1440px;
+  width: 100%;
+  margin: auto;
+}
+
 footer nav ul {
   font-weight: 300;
 
   display: flex;
   justify-content: flex-end;
   height: 60px;
+  margin-right: 107px;
 }
 
 /*** Login *************************************************/
