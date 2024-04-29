@@ -251,57 +251,56 @@ function modalTrashesOn() {
   let idWorkForTrash;
 
   // Add event listeners
+
   trashes.forEach((trash) => {
     trash.addEventListener("click", (event) => {
-      deletingWork(event);
-    });
-
-    trash.children[0].addEventListener("click", (event) => {
-      deletingWork(event);
-    });
-  });
-
-  // Delete process
-  function deletingWork(event) {
-    //___Get ID for trash
-    let elementForTrash = null;
-
-    if (event.target.tagName === "IMG") {
-      elementForTrash = event.target.parentNode.parentNode;
-    } else {
-      elementForTrash = event.target.parentNode;
-    }
-
-    elementForTrash.classList.forEach((classFromElementForTrash) => {
-      if (classFromElementForTrash.startsWith("id-")) {
-        idWorkForTrash = classFromElementForTrash.split("id-")[1];
-
-        //___Delete selected work (from HTML & DB server)
-        fetch(`http://localhost:5678/api/works/${idWorkForTrash}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
-          },
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(response);
-            }
-          })
-
-          .then(() => {
-            const allHTMLWorkForTrash = document.querySelectorAll(`.id-${idWorkForTrash}`);
-            allHTMLWorkForTrash.forEach((HTMLWorkForTrash) => {
-              HTMLWorkForTrash.remove();
-            });
-          })
-
-          .catch((error) => {
-            console.error("Request delete work :", error);
-          });
+      if (event.target.tagName === "IMG" || event.target === trash) {
+        deletingWork(event);
       }
     });
+  });
+}
+
+// Delete process
+function deletingWork(event) {
+  //___Get ID for trash
+  let elementForTrash = null;
+
+  if (event.target.tagName === "IMG") {
+    elementForTrash = event.target.parentNode.parentNode;
+  } else {
+    elementForTrash = event.target.parentNode;
   }
+
+  elementForTrash.classList.forEach((classFromElementForTrash) => {
+    if (classFromElementForTrash.startsWith("id-")) {
+      idWorkForTrash = classFromElementForTrash.split("id-")[1];
+
+      //___Delete selected work (from HTML & DB server)
+      fetch(`http://localhost:5678/api/works/${idWorkForTrash}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response);
+          }
+        })
+
+        .then(() => {
+          const allHTMLWorkForTrash = document.querySelectorAll(`.id-${idWorkForTrash}`);
+          allHTMLWorkForTrash.forEach((HTMLWorkForTrash) => {
+            HTMLWorkForTrash.remove();
+          });
+        })
+
+        .catch((error) => {
+          console.error("Request delete work :", error);
+        });
+    }
+  });
 }
 
 //*** Modal add new work ****************************************************/
@@ -465,6 +464,14 @@ function sendingNewWork() {
       </article>`;
         const elementModalTarget = document.querySelector(`.modal-gallery`);
         elementModalTarget.insertAdjacentHTML("beforeend", newWorkModalHTML);
+
+        // Add trash even listener
+        const newModalTrashBlock = elementModalTarget.lastElementChild.querySelector(".modal-trash-block");
+        newModalTrashBlock.addEventListener("click", (event) => {
+          if (event.target.tagName === "IMG" || event.target === newModalTrashBlock) {
+            deletingWork(event);
+          }
+        });
 
         // Reset modal display & form
         displayAddWork = false;
